@@ -1,5 +1,4 @@
-# from pages.login_page import LoginPage
-from pages.login_page import LoginPage
+from pages.fixtures import LoginPage
 from dotenv import load_dotenv, find_dotenv
 import re
 from playwright.sync_api import Page, expect
@@ -9,7 +8,7 @@ import os
 load_dotenv(find_dotenv())
 base_url = os.getenv("main_url")
 
-def test_example(page):
+def login_to_the_website(page):
     # creating the instance for the login page
     loginPage = LoginPage(page)
 

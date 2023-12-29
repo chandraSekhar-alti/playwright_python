@@ -1,0 +1,9 @@
+activate the venv server 
+run the scripts by the command of "pytest ./tests/test case name 
+if we want to use the allure results we have to run the commad as 
+1) " py.test --alluredir=allure_result_folder ./tests "
+2) allure serve %allure_result_folder%
+
+Allure reports
+* allure serve .\allure-report\
+
