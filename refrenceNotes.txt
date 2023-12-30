@@ -7,3 +7,5 @@ if we want to use the allure results we have to run the commad as
 Allure reports
 * allure serve .\allure-report\
 
+https://chat.openai.com/c/e07114af-0b3b-4ed8-a4c8-edea86ed6a81
+
