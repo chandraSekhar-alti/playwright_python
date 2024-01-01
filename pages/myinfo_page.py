@@ -1,6 +1,7 @@
 from playwright.sync_api import Page, expect
 
-class MyInfoTab:
+
+class MyInfoPage:
     def __init__(self, page) -> None:
         self.page = page
         self.my_info_label = page.locator('//span[text()="My Info"]')
@@ -22,7 +23,7 @@ class MyInfoTab:
             '//label[text()="Driver\'s License Number"]/parent::div/following-sibling::div/input'
         )
         self.licence_expire_date_calender = page.locator(
-            '(//input[@placeholder="yyyy-mm-dd"])[1]'
+            '//label[text()="License Expiry Date"]/parent::div/following-sibling::div/descendant::input'
         )
         self.calender_year = page.locator(
             '//div[@class="oxd-calendar-selector-year-selected"]'
@@ -90,3 +91,16 @@ class MyInfoTab:
         self.add_button = page.locator('//button[@type="button" and text()=" Add "]')
         self.comment_box = page.locator('//textarea[@placeholder="Type comment here"]')
         self.upload_file_save_button = page.locator('(//button[@type="submit"])[3]')
+        self.record_section_text = page.locator("//span[text()='(1) Record Found']")
+        self.record_table = page.locator('//div[@role="table"]')
+        self.table_file_name_text = page.locator('(//div[@role="row"])[1]/descendant::div[text()="File Name"]')
+        self.table_description_text = page.locator('(//div[@role="row"])[1]/descendant::div[text()="Description"]')
+        self.table_size_text = page.locator('(//div[@role="row"])[1]/descendant::div[text()="Size"]')
+        self.table_type_text = page.locator('(//div[@role="row"])[1]/descendant::div[text()="Type"]')
+        self.table_added_date_text = page.locator('(//div[@role="row"])[1]/descendant::div[text()="Date Added"]')
+        self.table_added_by_text = page.locator('(//div[@role="row"])[1]/descendant::div[text()="Added By"]')
+        self.table_action_text =page.locator('(//div[@role="row"])[1]/descendant::div[text()="Actions"]')
+        self.uploaded_file_name = lambda fileName : page.locator(f"(//div[text()='{fileName}'])[1]")
+        self.copy_right_first_text = page.locator("//p[text()='OrangeHRM OS 5.5']")
+        self.copy_right_second_text = page.locator("(//p[@class='oxd-text oxd-text--p orangehrm-copyright'])[2]")
+

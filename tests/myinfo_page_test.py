@@ -1,13 +1,13 @@
 from playwright.sync_api import expect
 from dotenv import find_dotenv, load_dotenv
 import os
-from pages.myinfo_page import MyInfoTab
+from pages.myinfo_page import MyInfoPage
 
 load_dotenv(find_dotenv())
 
 
 def test_my_info_page_data_inserting(page):
-    my_info_tab = MyInfoTab(page)
+    my_info_tab = MyInfoPage(page)
     expect(my_info_tab.my_info_label).to_be_visible()
     expect(my_info_tab.my_info_label).to_have_text("My Info")
     my_info_tab.my_info_label.click()
@@ -31,7 +31,7 @@ def test_my_info_page_data_inserting(page):
 
     # Selecting the calendar date
     my_info_tab.licence_expire_date_calender.click()
-    my_info_tab.licence_expire_date_calender.fill("2030-06-09")
+    my_info_tab.licence_expire_date_calender.fill("03-05-2023")
 
     # Selecting the nationality drop-down
     my_info_tab.nationality_drop_down.click()
@@ -82,3 +82,40 @@ def test_my_info_page_data_inserting(page):
         "I have uploaded a reference document in this section for further reference to understand everything properly"
     )
     my_info_tab.upload_file_save_button.click()
+
+
+def test_validating_uploaded_file_name(page):
+    my_info_tab = MyInfoPage(page)
+
+    expect(my_info_tab.my_info_label).to_be_visible()
+    expect(my_info_tab.my_info_label).to_have_text("My Info")
+    my_info_tab.my_info_label.click()
+    page.wait_for_timeout(2000)
+
+    # Validating the my info page URL
+    assert page.url == os.getenv(
+        "myInfoPage_URL"
+    ), f"URL does not match the expected URL. Actual URL: {page.url}"
+
+    expect(my_info_tab.profile_pic).to_be_visible()
+    expect(my_info_tab.tab_title).to_be_visible()
+    expect(my_info_tab.tab_title).to_have_text("Personal Details")
+
+    # validating the records tabel
+    page.wait_for_timeout(2000)
+    expect(my_info_tab.record_table).to_be_visible()
+    expect(my_info_tab.table_file_name_text).to_be_visible()
+    expect(my_info_tab.table_description_text).to_be_visible()
+    expect(my_info_tab.table_size_text).to_be_visible()
+    expect(my_info_tab.table_size_text).to_be_visible()
+    expect(my_info_tab.table_type_text).to_be_visible()
+    expect(my_info_tab.table_added_date_text).to_be_visible()
+    expect(my_info_tab.table_added_by_text).to_be_visible()
+    expect(my_info_tab.table_action_text).to_be_visible()
+
+    # verifying the file name
+    expect(my_info_tab.uploaded_file_name("refrenceNotes.txt")).to_be_visible()
+
+    # validating the copyright's text
+    expect(my_info_tab.copy_right_first_text).to_be_visible()
+    expect(my_info_tab.copy_right_second_text).to_be_visible()
