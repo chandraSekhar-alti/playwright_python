@@ -1,7 +1,7 @@
 from playwright.sync_api import expect
 from dotenv import find_dotenv, load_dotenv
 import os
-from pages.myinfo_page import MyInfoPage
+from pages.my_info_page import MyInfoPage
 
 load_dotenv(find_dotenv())
 
