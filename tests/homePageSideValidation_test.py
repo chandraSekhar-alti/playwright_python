@@ -4,6 +4,9 @@ from playwright.sync_api import expect
 import json
 import os
 
+load_dotenv(find_dotenv())
+
+
 json_file_path = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "..", "data", "homePage.json")
 )
@@ -13,8 +16,6 @@ with open(json_file_path, "r") as json_file:
     loaded_data = json.load(json_file)
 
 side_bar_list_inactive_items = loaded_data["sideBarListInactive_items"]
-
-load_dotenv(find_dotenv())
 
 
 def test_homepage_sidepanel_validation(page):
