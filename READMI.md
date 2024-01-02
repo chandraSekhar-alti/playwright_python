@@ -1,6 +1,6 @@
-# Playwright Python Tests for MyInfo Page and Home Page Sidebar Validation
+# Playwright Python Tests for MyInfo Page, Home Page Sidebar, and Client Center Page Validation
 
-This repository contains Playwright tests implemented in Python for filling out and submitting the MyInfo page on a website and validating the functionality of the sidebar on the home page.
+This repository contains Playwright tests implemented in Python for various functionalities on a website. The tests cover filling out and submitting the MyInfo page, validating the sidebar functionality on the home page, and testing the client center page.
 
 ## Test Files
 
@@ -26,6 +26,16 @@ This test file validates the functionality of the sidebar on the home page. It u
 - Clicking on sidebar menu items.
 - Verifying expected UI elements on the home page.
 
+### 3. help_center_test.py
+
+#### Description
+This test file focuses on validating the client center page and its functionality. It utilizes Playwright with Python to interact with elements on the client center page and ensures that expected behaviors are met.
+
+#### Test Scenarios
+- Interacting with various elements on the client center page.
+- Verifying the functionality of client center features.
+- Ensuring proper error handling and success messages.
+
 ## Prerequisites
 
 - Python installed on your machine.
@@ -38,11 +48,16 @@ This test file validates the functionality of the sidebar on the home page. It u
 ```bash
 git clone <repository_url>
 
+repository_url = https://github.com/chandraSekhar-alti/playwright_python_POM
+
 2. Navigate to the project directory:
 cd <project_directory>
 
 3. Run the tests using Playwright test runner:
 playwright test
+
+4. run the tests using pytest runner:
+pytest ./tests/
 
 
 Configuration :-
@@ -53,3 +68,9 @@ License
 This project is licensed under the MIT License
 
 Replace `<repository_url>` and `<project_directory>` with the actual repository URL and project directory. Adjust the description and test scenarios sections based on your project's specifics.
+
+## allure reports step
+
+$ pip install allure-pytest
+$ py.test --alluredir=allure-report ./tests
+$ allure serve allure-report

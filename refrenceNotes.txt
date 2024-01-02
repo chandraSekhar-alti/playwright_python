@@ -5,6 +5,7 @@ if we want to use the allure results we have to run the commad as
 2) allure serve %allure_result_folder%
 
 Allure reports
+* Remove-Item -Path .\allure-report -Recurse -Force
 * allure serve .\allure-report\
 
 https://chat.openai.com/c/e07114af-0b3b-4ed8-a4c8-edea86ed6a81

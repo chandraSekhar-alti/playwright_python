@@ -20,8 +20,8 @@ def browser():
 def page(browser):
     page = browser.new_page()
     page.set_default_timeout(
-        5000
-    )  # Set default timeout to 5000 milliseconds (5 seconds)
+        int(os.getenv("large_time_wait"))
+    )  # Set default timeout to 6000 milliseconds (6 seconds)
     yield page
     page.close()
 
@@ -29,7 +29,7 @@ def page(browser):
 @pytest.fixture(scope="function", autouse=True)
 def global_setup(page):
     # Open the website
-    page.goto(os.getenv("Base_URL"), timeout=20000)
+    page.goto(os.getenv("Base_URL"), timeout=int(os.getenv("URL_load_time")))
     page.set_viewport_size({"width": 1366, "height": 768})
 
     # Provide credentials (replace these with your actual credentials)
@@ -53,7 +53,7 @@ def setup(request, page):
         print("Running tear_down() after the test:", request.node.name)
         # Add your tear_down() logic here
         page.locator('//li[@class="oxd-userdropdown"]/span').click()
-        page.wait_for_timeout(2000)
+        page.wait_for_timeout(int(os.getenv("small_time_wait")))
         page.locator("//a[text()='Logout']").click()
         expect(page).to_have_url(
             os.getenv("base_url"), timeout=int(os.getenv("medium_time_wait"))

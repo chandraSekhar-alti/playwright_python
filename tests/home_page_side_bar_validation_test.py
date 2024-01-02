@@ -24,7 +24,22 @@ def test_homepage_sidepanel_validation(page):
 
     for item in side_bar_list_inactive_items:
         try:
-            home_page.home_page_sidebar_validation(item, int(os.getenv("semi_time_wait")))
+            home_page.home_page_sidebar_validation(
+                item, int(os.getenv("semi_time_wait"))
+            )
 
         except Exception as e:
             print(f"Error in loop iteration for item {item}: {e}")
+
+
+def test_home_page_search_bar_validation(page):
+    home_page = HomePageSideBar(page)
+    expect(home_page.search_bar_logo).to_be_visible()
+    home_page.search_bar_input_field.fill("Leave")
+    expect(home_page.leave_section_side_bar).to_be_visible()
+    home_page.leave_section_side_bar.click()
+    page.wait_for_timeout(2000)
+    expect(home_page.leave_breadcrum_text).to_be_visible()
+    url_to_assert = f'{os.getenv("Home_page_URL")}/leave/viewLeaveList'
+
+    expect(page).to_have_url(url_to_assert)

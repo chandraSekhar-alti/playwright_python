@@ -11,7 +11,7 @@ def test_my_info_page_data_inserting(page):
     expect(my_info_tab.my_info_label).to_be_visible()
     expect(my_info_tab.my_info_label).to_have_text("My Info")
     my_info_tab.my_info_label.click()
-    page.wait_for_timeout(2000)
+    page.wait_for_timeout(int(os.getenv("small_time_wait")))
 
     # Validating the my info page URL
     assert page.url == os.getenv(
@@ -77,7 +77,7 @@ def test_my_info_page_data_inserting(page):
     file_chooser = fc_info.value
     file_chooser.set_files(file_path)
 
-    page.wait_for_timeout(2000)
+    page.wait_for_timeout(int(os.getenv("small_time_wait")))
     my_info_tab.comment_box.fill(
         "I have uploaded a reference document in this section for further reference to understand everything properly"
     )
@@ -90,7 +90,7 @@ def test_validating_uploaded_file_name(page):
     expect(my_info_tab.my_info_label).to_be_visible()
     expect(my_info_tab.my_info_label).to_have_text("My Info")
     my_info_tab.my_info_label.click()
-    page.wait_for_timeout(2000)
+    page.wait_for_timeout(int(os.getenv("small_time_wait")))
 
     # Validating the my info page URL
     assert page.url == os.getenv(
@@ -102,7 +102,7 @@ def test_validating_uploaded_file_name(page):
     expect(my_info_tab.tab_title).to_have_text("Personal Details")
 
     # validating the records tabel
-    page.wait_for_timeout(2000)
+    page.wait_for_timeout(int(os.getenv("small_time_wait")))
     expect(my_info_tab.record_table).to_be_visible()
     expect(my_info_tab.table_file_name_text).to_be_visible()
     expect(my_info_tab.table_description_text).to_be_visible()

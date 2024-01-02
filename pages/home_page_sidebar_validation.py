@@ -1,5 +1,6 @@
 from playwright.sync_api import Page, expect
 
+
 class HomePageSideBar:
     def __init__(self, page) -> None:
         self.page = page
@@ -9,6 +10,10 @@ class HomePageSideBar:
         )
         # self.dashboard_item = page.locator('//a[@class="oxd-main-menu-item active"]/descendant::span[text()="Dashboard"]')
         self.maintenance_cancel_button = page.locator("//button[text()=' Cancel ']")
+        self.search_bar_logo = page.locator('//div[@class="oxd-main-menu-search"]')
+        self.search_bar_input_field = page.locator('//input[@placeholder="Search"]')
+        self.leave_section_side_bar = page.locator("//span[text()='Leave']")
+        self.leave_breadcrum_text = page.locator("//h6[text()='Leave']")
         pass
 
     def home_page_sidebar_validation(self, text, time):
