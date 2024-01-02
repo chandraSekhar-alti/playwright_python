@@ -67,7 +67,7 @@ def test_my_info_page_data_inserting(page):
     my_info_tab.add_button.click()
 
     file_path = os.path.abspath(
-        os.path.join(os.path.dirname(__file__), "..", "refrenceNotes.txt")
+        os.path.join(os.path.dirname(__file__), "..", "READMI.md")
     )
 
     # File upload with the input tag
